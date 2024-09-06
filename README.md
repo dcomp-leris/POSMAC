@@ -1,5 +1,6 @@
-# POSMAC
-This repository is for POSMAC demo. It will be public after acceptance.
+# POSMAC: Powering Up In-Network AR/CG Traffic Classification with Online Learning
+
+This repository is for POSMAC demo. It will be publiclly available after acceptance.
 
 This is the POSMAC architecture with 4 key componenets.
 
