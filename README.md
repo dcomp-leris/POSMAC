@@ -43,60 +43,78 @@ Install the docker on the host system for hosting the containers (https://docs.d
 ### 2-3- Linux-based Containers: 
 For pcappool, AR, CG, Other, OT components. Pull the image on the POSMAC host.
               
-              $ sudo docker pull ubuntu:24.04
+    $ sudo docker pull ubuntu:24.04
+
 ### 2-4- Linux-based DOCA Container for Bluefield 3.0: 
 For TC component. Pull the image on the POSMAC host.
   
-              $ sudo docker pull nvcr.io/nvidia/doca/doca:2.8.0-devel
+    $ sudo docker pull nvcr.io/nvidia/doca/doca:2.8.0-devel
 
 ### 2-5- QEMU for Multi-Architecture (X86/arm64): [https://www.qemu.org/download/#linux]
 
-              $ sudo apt update 
-              $ apt-get install qemu-user-static
+    $ sudo apt update 
+    $ apt-get install qemu-user-static
 
 ## 3- Run & Setup Containers
 ### 3-1- Containers Networks
-              $ sudo docker network create --subnet=192.168.10.0/24 net_192_168_10
-              $ sudo docker network create --subnet=192.168.20.0/24 net_192_168_20
-              $ sudo docker network create --subnet=192.168.30.0/24 net_192_168_30
-              $ sudo docker network create --subnet=10.10.10.0/24 net_10_10_10
-              $ sudo docker network create --subnet=192.168.110.0/24 net_192_168_110
-              $ sudo docker network create --subnet=192.168.120.0/24 net_192_168_120
-              $ sudo docker network create --subnet=192.168.130.0/24 net_192_168_130
-              $ sudo docker network create --subnet=192.168.140.0/24 net_192_168_140 
+
+    $ sudo docker network create --subnet=192.168.10.0/24 net_192_168_10
+    $ sudo docker network create --subnet=192.168.20.0/24 net_192_168_20
+    $ sudo docker network create --subnet=192.168.30.0/24 net_192_168_30
+    $ sudo docker network create --subnet=10.10.10.0/24 net_10_10_10
+    $ sudo docker network create --subnet=192.168.110.0/24 net_192_168_110
+    $ sudo docker network create --subnet=192.168.120.0/24 net_192_168_120
+    $ sudo docker network create --subnet=192.168.130.0/24 net_192_168_130
+    $ sudo docker network create --subnet=192.168.140.0/24 net_192_168_140 
               
 ### 3-2- Run POSMAC Components
 #### 3-2-1- Run cls container (ARM64)
     
-              $ sudo docker run -dit --name cls --platform linux/arm64  --privileged --network net_192_168_10 --mac-address '02:00:00:ac:02' --ip 192.168.10.2 nvcr.io/nvidia/doca/doca:2.8.0-devel
+    $ sudo docker run -dit --name cls --platform linux/arm64  --privileged --network net_192_168_10 --mac-address '02:00:00:ac:02' --ip 192.168.10.2 nvcr.io/nvidia/doca/doca:2.8.0-devel
               
 ***Connect additional networks (connected to cls)***
 
-              $ sudo docker network connect  --ip 192.168.20.2 net_192_168_20 cls
-              $ sudo docker network connect  --ip 192.168.30.2 net_192_168_30 cls
-              $ sudo docker network connect  --ip 10.10.10.3 net_10_10_10 cls
-              $ sudo docker network connect  --ip 192.168.140.2 net_192_168_140 cls
+    $ sudo docker network connect  --ip 192.168.20.2 net_192_168_20 cls
+    $ sudo docker network connect  --ip 192.168.30.2 net_192_168_30 cls
+    $ sudo docker network connect  --ip 10.10.10.3 net_10_10_10 cls
+    $ sudo docker network connect  --ip 192.168.140.2 net_192_168_140 cls
 
 #### 3-2-2- Run TG Container (X86)
-              $ docker run -dit --name TG --privileged --network net_10_10_10 --mac-address '00:00:00:00:00:01' --ip 10.10.10.2 ubuntu:latest
+    $ docker run -dit --name TG --privileged --network net_10_10_10 --mac-address '00:00:00:00:00:01' --ip 10.10.10.2 ubuntu:latest
               
 #### 3-2-3- Run ar Container (X86)
-              $ docker run -dit --name ar --privileged  --network net_192_168_10 --mac-address '00:00:00:00:0a:01' --ip 192.168.10.3 ubuntu:latest
-              $ sudo docker network connect --ip 192.168.110.3 net_192_168_110 ar   # Connect additional networks
+    $ docker run -dit --name ar --privileged  --network net_192_168_10 --mac-address '00:00:00:00:0a:01' --ip 192.168.10.3 ubuntu:latest
+    $ sudo docker network connect --ip 192.168.110.3 net_192_168_110 ar   # Connect additional networks
 
 #### 3-2-4- Run cg Container (X86)
-              $ sudo docker run -dit --name cg --privileged --network net_192_168_20 --mac-address '00:00:00:00:0b:01' --ip 192.168.20.3 ubuntu:latest
-              $ sudo docker network connect --ip 192.168.120.3 net_192_168_120 cg  # Connect additional networks
+    $ sudo docker run -dit --name cg --privileged --network net_192_168_20 --mac-address '00:00:00:00:0b:01' --ip 192.168.20.3 ubuntu:latest
+    $ sudo docker network connect --ip 192.168.120.3 net_192_168_120 cg  # Connect additional networks
 
 #### 3-2-5- Run other Container (x86)
-              $ sudo docker run -dit --name other --privileged --network net_192_168_30 --mac-address '00:00:00:00:0c:01' --ip 192.168.30.3 ubuntu:latest
-              $ sudo docker network connect --ip 192.168.130.3 net_192_168_130 other # Connect additional networks
+    $ sudo docker run -dit --name other --privileged --network net_192_168_30 --mac-address '00:00:00:00:0c:01' --ip 192.168.30.3 ubuntu:latest
+    $ sudo docker network connect --ip 192.168.130.3 net_192_168_130 other # Connect additional networks
 
-#### 3-2-6- Run ot Container (X86)
-              $ sudo docker run -dit --name ot --privileged --network net_192_168_110 --mac-address '00:00:00:00:0e:01' --ip 192.168.110.2 ubuntu:latest
-              $ sudo docker network connect --ip 192.168.140.3 net_192_168_140 ot  # Connect additional networks
+#### 3-2-6- Run OT Container (X86)
+    $ sudo docker run -dit --name ot --privileged --network net_192_168_110 --mac-address '00:00:00:00:0e:01' --ip 192.168.110.2 ubuntu:latest
+    $ sudo docker network connect --ip 192.168.140.3 net_192_168_140 ot  # Connect additional networks
 
-              
+#### 3-2-7- Configure the MAC Address of NICs
+##### CLS MACs    
+    $ sudo exec --it cls bash    # set the MACs
+    $ ifconfig eth0 down && ifconfig eth0 hw ether 00:00:00:00:ac:02 & ifconfig eth0 up & ifconfig eth0 192.168.10.2 netmask 255.255.255.0
+    $ ifconfig eth1 down && ifconfig eth1 hw ether 00:00:00:00:ac:03 & ifconfig eth1 up
+    $ ifconfig eth2 down && ifconfig eth2 hw ether 00:00:00:00:ac:04 & ifconfig eth2 up
+    $ ifconfig eth3 down && ifconfig eth3 hw ether 00:00:00:00:ac:01 && ifconfig eth3 up 
+    $ ifconfig eth4 down && ifconfig eth4 hw ether 00:00:00:00:ac:05 & ifconfig eth4 up
+    
+
+    $ sudo exec --it cls bash    # set the MACs
+    $ ifconfig eth0 down && ifconfig eth0 hw ether 00:00:00:00:ac:02 & ifconfig eth0 up & ifconfig eth0 192.168.10.2 netmask 255.255.255.0
+    $ ifconfig eth1 down && ifconfig eth1 hw ether 00:00:00:00:ac:03 & ifconfig eth1 up
+    $ ifconfig eth2 down && ifconfig eth2 hw ether 00:00:00:00:ac:04 & ifconfig eth2 up
+    $ ifconfig eth3 down && ifconfig eth3 hw ether 00:00:00:00:ac:01 && ifconfig eth3 up 
+    $ ifconfig eth4 down && ifconfig eth4 hw ether 00:00:00:00:ac:05 & ifconfig eth4 up
+    
 
 
 
