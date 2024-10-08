@@ -124,17 +124,12 @@ For TC component. Pull the image on the POSMAC host.
     $ ifconfig eth1 down && ifconfig eth1 hw ether 00:00:00:00:0b:02 && ifconfig eth1 up
 
     
-
-    
-
-
-  
-  **3-3- Install requirements on all containers:** Python, Scapy, Joblib should be installed on all components. These softwares should be installed on all containers after running. 
-  
-              $ sudo apt update
-              $ sudo apt install python3 python3-pip 
-              $ sudo pip3 install joblib scapy
-   
-   
+### 3-3- Install Containers Requirements
+#### 3-3-1- cls   
+              $ apt update
+              $ apt install python3 python3-pip nano # all containers
+              $ apt install -y tcpreplay --break-system-packages  # Only for TG 
+              $ pip3 install joblib scapy pyyaml --break-system-packages
+               
    
    
