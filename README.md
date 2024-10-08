@@ -126,10 +126,10 @@ For TC component. Pull the image on the POSMAC host.
     
 ### 3-3- Install Containers Requirements
 #### 3-3-1- Required Softwares on all containers (pcappool, cls, ar, cg, other, and ot)    
-              $ apt update
-              $ apt install python3 python3-pip nano # all containers
-              $ apt install -y tcpreplay --break-system-packages  # Only for TG 
-              $ pip3 install joblib scapy pyyaml numpy scikit-learn --break-system-packages
+    $ apt update
+    $ apt install python3 python3-pip nano # all containers
+    $ apt install -y tcpreplay --break-system-packages  # Only for TG 
+    $ pip3 install joblib scapy pyyaml numpy scikit-learn --break-system-packages
                
    
    
