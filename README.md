@@ -34,11 +34,12 @@ In this demonstration, we showcase **POSMAC** (Platform of Optimization & Deploy
 </p>
 
 ## 2- Requirements
+All the requirements should be run on the host computer which POSMAC will be run:
 
   **2-1- Host computer:** It is a computer system with Ubuntu 24.04 LTS Linux Operating System which hosts all POSMAC components (Pcap pool, TC, AR, CG, Other, and OT) which are containers.
   
   **2-2- Docker** Install the docker on the host system for hosting the containers (https://docs.docker.com/engine/install/ubuntu/)
-  
+
   **2-3- Linux-based Containers:** For pcappool, AR, CG, Other, OT components. Pull the image on the POSMAC host.
               
               $ sudo docker pull ubuntu:24.04
@@ -46,8 +47,14 @@ In this demonstration, we showcase **POSMAC** (Platform of Optimization & Deploy
   **2-4- Linux-based DOCA Container for Bluefield 3.0:** For TC component. Pull the image on the POSMAC host.
   
               $ sudo docker pull nvcr.io/nvidia/doca/doca:2.8.0-devel
-              
-  **2-5- Software:** Python, Scapy, Joblib should be installed on all components. These softwares should be installed on all containers after running. 
+
+  **2-5- QEMU for Multi-Architecture (X86/arm64) support:** [https://www.qemu.org/download/#linux]
+
+              $ sudo apt update 
+              $ apt-get install qemu-user-static
+
+
+  **3-3- Install requirements on all containers:** Python, Scapy, Joblib should be installed on all components. These softwares should be installed on all containers after running. 
   
               $ sudo apt update
               $ sudo apt install python3 python3-pip 
