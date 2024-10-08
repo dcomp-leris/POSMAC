@@ -68,7 +68,7 @@ For TC component. Pull the image on the POSMAC host.
 ### 3-2- Run POSMAC Components
 #### 3-2-1- Run cls container (ARM64)
     
-              $ sudo docker run -dit --name cls --platform linux/arm64 --network net_192_168_10 --mac-address '02:00:00:ac:02' --ip 192.168.10.2 nvcr.io/nvidia/doca/doca:2.8.0-devel
+              $ sudo docker run -dit --name cls --platform linux/arm64  --privileged --network net_192_168_10 --mac-address '02:00:00:ac:02' --ip 192.168.10.2 nvcr.io/nvidia/doca/doca:2.8.0-devel
               
 ***Connect additional networks (connected to cls)***
 
@@ -78,22 +78,22 @@ For TC component. Pull the image on the POSMAC host.
               $ sudo docker network connect  --ip 192.168.140.2 net_192_168_140 cls
 
 #### 3-2-2- Run TG Container (X86)
-              $ docker run -dit --name TG --network net_10_10_10 --mac-address '00:00:00:00:00:01' --ip 10.10.10.2 ubuntu:latest
+              $ docker run -dit --name TG --privileged --network net_10_10_10 --mac-address '00:00:00:00:00:01' --ip 10.10.10.2 ubuntu:latest
               
 #### 3-2-3- Run ar Container (X86)
-              $ docker run -dit --name ar --network net_192_168_10 --mac-address '00:00:00:00:0a:01' --ip 192.168.10.3 ubuntu:latest
+              $ docker run -dit --name ar --privileged  --network net_192_168_10 --mac-address '00:00:00:00:0a:01' --ip 192.168.10.3 ubuntu:latest
               $ sudo docker network connect --ip 192.168.110.3 net_192_168_110 ar   # Connect additional networks
 
 #### 3-2-4- Run cg Container (X86)
-              $ sudo docker run -dit --name cg --network net_192_168_20 --mac-address '00:00:00:00:0b:01' --ip 192.168.20.3 ubuntu:latest
+              $ sudo docker run -dit --name cg --privileged --network net_192_168_20 --mac-address '00:00:00:00:0b:01' --ip 192.168.20.3 ubuntu:latest
               $ sudo docker network connect --ip 192.168.120.3 net_192_168_120 cg  # Connect additional networks
 
 #### 3-2-5- Run other Container (x86)
-              $ sudo docker run -dit --name other --network net_192_168_30 --mac-address '00:00:00:00:0c:01' --ip 192.168.30.3 ubuntu:latest
+              $ sudo docker run -dit --name other --privileged --network net_192_168_30 --mac-address '00:00:00:00:0c:01' --ip 192.168.30.3 ubuntu:latest
               $ sudo docker network connect --ip 192.168.130.3 net_192_168_130 other # Connect additional networks
 
 #### 3-2-6- Run ot Container (X86)
-              $ sudo docker run -dit --name ot --network net_192_168_110 --mac-address '00:00:00:00:0e:01' --ip 192.168.110.2 ubuntu:latest
+              $ sudo docker run -dit --name ot --privileged --network net_192_168_110 --mac-address '00:00:00:00:0e:01' --ip 192.168.110.2 ubuntu:latest
               $ sudo docker network connect --ip 192.168.140.3 net_192_168_140 ot  # Connect additional networks
 
               
