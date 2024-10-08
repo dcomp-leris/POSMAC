@@ -129,7 +129,7 @@ For TC component. Pull the image on the POSMAC host.
               $ apt update
               $ apt install python3 python3-pip nano # all containers
               $ apt install -y tcpreplay --break-system-packages  # Only for TG 
-              $ pip3 install joblib scapy pyyaml numpy --break-system-packages
+              $ pip3 install joblib scapy pyyaml numpy scikit-learn --break-system-packages
                
    
    
