@@ -208,3 +208,23 @@ Follow the order in running the components: (1) cls, (2) servers (ar, cg, other)
 **Output-->** To use Online learning and transfering the Pre-Trained model use ***option 3***
 
 ![Posmac_ot](https://github.com/user-attachments/assets/aa02bab3-9359-4aa3-aba5-14d1b58256b6)
+
+  #### 4-4- Run Pcap Pool Componenet
+
+- Set interface name connected to the cls (Note: all have already been set!)
+
+      # Host
+      $ Sudo docker exec -it TG bash
+  
+      # Inside the server containers which can be one of ar, cg, or other
+      $ cd home/pcappool
+      $ nano config.yaml
+      $ python3 run_pcappool.py
+**Output-->** To use Online learning and transfering the Pre-Trained model use ***Option 3- Replay the PCAP files randomly (Note: The order of files replaying is random!)***
+
+![Posmac_pcappool](https://github.com/user-attachments/assets/ca1f90e4-1747-4fd6-82aa-100eb7e85d92)
+
+ ### 5- Monitoring
+
+ - Go to the cls container and monitor the log!
+ - use the dashboard
