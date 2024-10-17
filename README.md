@@ -69,7 +69,9 @@ For TC component. Pull the image on the POSMAC host.
     $ sudo docker network create --subnet=192.168.140.0/24 net_192_168_140 
               
 ### 3-2- Run POSMAC Components
-#### 3-2-1- Run cls container (ARM64)
+#### 3-2-1- Run "TC" Componenet with container (ARM64)
+
+    # Container name: cls (classifier)
     
     $ sudo docker run -dit --name cls --platform linux/arm64  --privileged --network net_192_168_10 --mac-address '02:00:00:ac:02' --ip 192.168.10.2 nvcr.io/nvidia/doca/doca:2.8.0-devel
               
@@ -80,22 +82,30 @@ For TC component. Pull the image on the POSMAC host.
     $ sudo docker network connect  --ip 10.10.10.3 net_10_10_10 cls
     $ sudo docker network connect  --ip 192.168.140.2 net_192_168_140 cls
 
-#### 3-2-2- Run TG Container (X86)
+#### 3-2-2- Run "PCAP Pool" Component with container (X86)
+    # Container name: TG (Traffic Generator)
+    
     $ docker run -dit --name TG --privileged --network net_10_10_10 --mac-address '00:00:00:00:00:01' --ip 10.10.10.2 ubuntu:latest
               
-#### 3-2-3- Run ar Container (X86)
+#### 3-2-3- Run "APS-ar" Componenet with container (X86) 
+    # Container name: ar (augmented reality)
+    
     $ docker run -dit --name ar --privileged  --network net_192_168_10 --mac-address '00:00:00:00:0a:01' --ip 192.168.10.3 ubuntu:latest
     $ sudo docker network connect --ip 192.168.110.3 net_192_168_110 ar   # Connect additional networks
 
-#### 3-2-4- Run cg Container (X86)
+#### 3-2-4- Run "APS-cg" Componenet with container (X86) 
+    # Container name: cg (cloud gaming)
+    
     $ sudo docker run -dit --name cg --privileged --network net_192_168_20 --mac-address '00:00:00:00:0b:01' --ip 192.168.20.3 ubuntu:latest
     $ sudo docker network connect --ip 192.168.120.3 net_192_168_120 cg  # Connect additional networks
 
-#### 3-2-5- Run other Container (x86)
+#### 3-2-5- Run "APS-other" Componenet with container (X86) 
+    # Container name: other (Non-ar and Non-cg)
+    
     $ sudo docker run -dit --name other --privileged --network net_192_168_30 --mac-address '00:00:00:00:0c:01' --ip 192.168.30.3 ubuntu:latest
     $ sudo docker network connect --ip 192.168.130.3 net_192_168_130 other # Connect additional networks
 
-#### 3-2-6- Run OT Container (X86)
+#### 3-2-6- Run "OT" Container Componenet with container (X86) 
     $ sudo docker run -dit --name ot --privileged --network net_192_168_110 --mac-address '00:00:00:00:0e:01' --ip 192.168.110.2 ubuntu:latest
     $ sudo docker network connect --ip 192.168.140.3 net_192_168_140 ot  # Connect additional networks
 
@@ -162,16 +172,39 @@ Follow the order in running the components: (1) cls, (2) servers (ar, cg, other)
       $ nano config.yaml
       $ python3 run_cls.py 
     
-**Output** By default choos **option (3)** to enable online learning capability and classification/forwarding capability! 
+**Output-->** By default choos **option (3)** to enable online learning capability and classification/forwarding capability! 
 
    ![posmac_cls](https://github.com/user-attachments/assets/63ef5045-f71d-4e51-b4d5-b7e1ca0980b2)
 
-#### 4-2- run  component in cls running contanier
+#### 4-2- Run Servers Componenet
 
-- Set ingress interface connected to Pcap Pool Component (e.g., eth0)
-
-- Set interfaces connected servers (ar, cg, other) (e.g., eth1, eth2, eth3)
-
-- Set interface connected to Online Trainer Component (e.g., eth4)
+- Set ingress interface connected to cls (e.g., in config.yaml set ***listener_interface: eth1***)
+- Set interface connected to Online Trainer Component (e.g., ***ot_server:interface_name: eth2***)
 - The mac addresses have already been configured to make it easy
    
+
+      # Host
+      $ Sudo docker exec -it [ar/cg/other] bash
+  
+      # Inside the server containers which can be one of ar, cg, or other
+      $ cd home/[ar/cg/other]
+      $ nano config.yaml
+      $ python3 run_server_agent.py
+**Output-->** Server listening the Interface connected to the cls ...
+
+![Posmac_server](https://github.com/user-attachments/assets/1cf8147e-e69e-48e8-bfa0-3babde375aa4)
+
+  #### 4-3- Run OT Componenet
+
+- Set OT interfaces, ports, and DT/RF models for training (Note: all have already been set!)
+
+      # Host
+      $ Sudo docker exec -it ot bash
+  
+      # Inside the server containers which can be one of ar, cg, or other
+      $ cd home/ot
+      $ nano config.yaml
+      $ python3 run_ot.py
+**Output-->** To use Online learning and transfering the Pre-Trained model use ***option 3***
+
+![Posmac_ot](https://github.com/user-attachments/assets/aa02bab3-9359-4aa3-aba5-14d1b58256b6)
