@@ -136,7 +136,7 @@ For TC component. Pull the image on the POSMAC host.
     $ apt install -y tcpreplay --break-system-packages  # Only for TG 
     $ pip3 install joblib scapy pyyaml numpy scikit-learn --break-system-packages
 
-#### 3-3-2- Transfer Modules to the server
+#### 3-3-2- Transfer Modules to the containers
 
 In the Project repository treansfer the folder to each container
 
