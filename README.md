@@ -1,22 +1,18 @@
 # POSMAC: Powering Up In-Network AR/CG Traffic Classification with Online Learning
 
+
+
 <table align="center">
   <tr>
-    <td> <img src="https://github.com/dcomp-leris/VR-AR-CG-network-telemetry/assets/58492556/67a96a00-c791-46b3-afac-daf3ae212aeb" align="middle" alt="Leris" width="150" height="150"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><img src="https://github.com/user-attachments/assets/8f9e55aa-cfe0-4c3d-9563-aee0601fb73d" alt="Conference" align="middle" width="350" height="150"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><img src="https://github.com/dcomp-leris/VR-AR-CG-network-telemetry/assets/58492556/b26a6be8-6b16-4542-bb3e-7eeac34644d6" align="middle" alt="SMARTNESS" width="150" height="150"></td>
+    <td style="padding-right: 2000px;">
+      <img src="https://github.com/dcomp-leris/VR-AR-CG-network-telemetry/assets/58492556/67a96a00-c791-46b3-afac-daf3ae212aeb" align="middle" alt="Leris" width="150" height="150">
+    </td>
+    <td style="padding-right: 2000px;">
+      <img src="https://github.com/user-attachments/assets/8f9e55aa-cfe0-4c3d-9563-aee0601fb73d" alt="Conference" align="middle" width="350" height="150">
+    </td>
+    <td>
+      <img src="https://github.com/dcomp-leris/VR-AR-CG-network-telemetry/assets/58492556/b26a6be8-6b16-4542-bb3e-7eeac34644d6" align="middle" alt="SMARTNESS" width="150" height="150">
+    </td>
   </tr>
 </table>
 
@@ -60,8 +56,8 @@ For TC component. Pull the image on the POSMAC host.
     $ sudo apt update 
     $ apt-get install qemu-user-static
 
-## 3- Run & Setup Containers
-### 3-1- Containers Networks
+## 3- Setup Infrastructure with Docker & Containers  
+### 3-1- Networking of the Containers 
 
     $ sudo docker network create --subnet=192.168.10.0/24 net_192_168_10
     $ sudo docker network create --subnet=192.168.20.0/24 net_192_168_20
@@ -129,14 +125,14 @@ For TC component. Pull the image on the POSMAC host.
     $ ifconfig eth1 down && ifconfig eth1 hw ether 00:00:00:00:0b:02 && ifconfig eth1 up
 
     
-### 3-3- Install Containers Requirements
+### 3-3- Install Required Packages inside the Containers
 #### 3-3-1- Required Softwares on all containers (pcappool, cls, ar, cg, other, and ot)    
     $ apt update
     $ apt install python3 python3-pip nano # all containers
     $ apt install -y tcpreplay --break-system-packages  # Only for TG 
     $ pip3 install joblib scapy pyyaml numpy scikit-learn --break-system-packages
 
-#### 3-3-2- Transfer Modules to the containers
+#### 3-3-2- Transfer Modules from Host system to the containers
 
 In the Project repository treansfer the folder to each container
 
@@ -146,6 +142,36 @@ In the Project repository treansfer the folder to each container
     $ sudo docker cp ./ar ar:/home/
     $ sudo docker cp ./cg cg:/home/
     $ sudo docker cp ./other other:/home/
-               
-   
+## 4- Run the POSMAC Components
+Follow the order in running the components: (1) cls, (2) servers (ar, cg, other), (3) ot, (4) pcap pool
+
+#### 4-1- Run cls Component 
+
+- Set ingress interface connected to Pcap Pool Component (e.g., eth0)
+
+- Set interfaces connected servers (ar, cg, other) (e.g., eth1, eth2, eth3)
+
+- Set interface connected to Online Trainer Component (e.g., eth4)
+- The mac addresses have already been configured to make it easy
+
+      # Host
+      $ Sudo docker exec -it cls bash
+  
+      # Inside the cls container
+      $ cd home/cls
+      $ nano config.yaml
+      $ python3 run_cls.py 
+    
+**Output** By default choos **option (3)** to enable online learning capability and classification/forwarding capability! 
+
+   ![posmac_cls](https://github.com/user-attachments/assets/63ef5045-f71d-4e51-b4d5-b7e1ca0980b2)
+
+#### 4-2- run  component in cls running contanier
+
+- Set ingress interface connected to Pcap Pool Component (e.g., eth0)
+
+- Set interfaces connected servers (ar, cg, other) (e.g., eth1, eth2, eth3)
+
+- Set interface connected to Online Trainer Component (e.g., eth4)
+- The mac addresses have already been configured to make it easy
    
