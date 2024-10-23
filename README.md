@@ -112,11 +112,11 @@ For TC component. Pull the image on the POSMAC host.
 #### 3-2-7- Configure the MAC Address of NICs
 ##### CLS MACs    
     $ sudo exec --it cls bash    # set the MACs
-    $ ifconfig eth0 down && ifconfig eth0 hw ether 00:00:00:00:ac:02 && ifconfig eth0 up && ifconfig eth0 192.168.10.2 netmask 255.255.255.0
-    $ ifconfig eth1 down && ifconfig eth1 hw ether 00:00:00:00:ac:03 && ifconfig eth1 up
-    $ ifconfig eth2 down && ifconfig eth2 hw ether 00:00:00:00:ac:04 && ifconfig eth2 up
-    $ ifconfig eth3 down && ifconfig eth3 hw ether 00:00:00:00:ac:01 && ifconfig eth3 up 
-    $ ifconfig eth4 down && ifconfig eth4 hw ether 00:00:00:00:ac:05 && ifconfig eth4 up
+    $ ifconfig eth0 down && ifconfig eth0 hw ether 00:00:00:00:ac:02 && ifconfig eth0 up # ar container
+    $ ifconfig eth1 down && ifconfig eth1 hw ether 00:00:00:00:ac:03 && ifconfig eth1 up # cg container
+    $ ifconfig eth2 down && ifconfig eth2 hw ether 00:00:00:00:ac:04 && ifconfig eth2 up # other container
+    $ ifconfig eth3 down && ifconfig eth3 hw ether 00:00:00:00:ac:01 && ifconfig eth3 up # TG container
+    $ ifconfig eth4 down && ifconfig eth4 hw ether 00:00:00:00:ac:05 && ifconfig eth4 up # OT container
 
 ##### AR MACs    
     $ sudo exec --it ar bash    # set the MACs
