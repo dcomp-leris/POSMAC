@@ -224,7 +224,38 @@ Follow the order in running the components: (1) cls, (2) servers (ar, cg, other)
 
 ![Posmac_pcappool](https://github.com/user-attachments/assets/ca1f90e4-1747-4fd6-82aa-100eb7e85d92)
 
- ### 5- Monitoring
+ ### 5- Folder/File Structure
 
- - Go to the cls container and monitor the log!
- - use the dashboard
+├── APPS
+│   ├── ar
+│   │   ├── config.yaml
+│   │   └── run_server_agent.py
+│   ├── cg
+│   │   ├── config.yaml
+│   │   └── run_server_agent.py
+│   └── other
+│       ├── config.yaml
+│       └── run_server_agent.py
+├── OT
+│   ├── auto_train.py
+│   ├── config.yaml
+│   ├── ot_server.py
+│   └── traffic.db
+├── TC
+│   ├── basicmodel
+│   │   ├── dt.joblib
+│   │   └── dt_model.joblib
+│   ├── config.yaml
+│   ├── forwarding_ARCGOther.py
+│   ├── models
+│   ├── my_receivier.py
+│   ├── packet_classifier.py
+│   └── run_cls.py
+└── TG
+    ├── config.yaml
+    └── run_pcappool_v2.py
+
+
+ 
+ ### 6- Monitoring
+Coming Soon!!!
