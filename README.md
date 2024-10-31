@@ -226,35 +226,7 @@ Follow the order in running the components: (1) cls, (2) servers (ar, cg, other)
 
  ### 5- Folder/File Structure
 
-├── APPS
-│   ├── ar
-│   │   ├── config.yaml
-│   │   └── run_server_agent.py
-│   ├── cg
-│   │   ├── config.yaml
-│   │   └── run_server_agent.py
-│   └── other
-│       ├── config.yaml
-│       └── run_server_agent.py
-├── OT
-│   ├── auto_train.py
-│   ├── config.yaml
-│   ├── ot_server.py
-│   └── traffic.db
-├── TC
-│   ├── basicmodel
-│   │   ├── dt.joblib
-│   │   └── dt_model.joblib
-│   ├── config.yaml
-│   ├── forwarding_ARCGOther.py
-│   ├── models
-│   ├── my_receivier.py
-│   ├── packet_classifier.py
-│   └── run_cls.py
-└── TG
-    ├── config.yaml
-    └── run_pcappool_v2.py
-
+![POSMAC Files](https://github.com/user-attachments/assets/55781d87-3b35-4cd8-9299-ca5bb079c876)
 
  
  ### 6- Monitoring
