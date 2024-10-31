@@ -1,0 +1,51 @@
+
+# Network Trarf Classification Configuration
+cls_config:
+  ingress:
+    interface: "eth4"           # Network interface to be used for traffic replay
+
+  servers:
+    AR:
+      name: 'AR'
+      my_interface: "eth1"             # ethx connected to AR server
+      my_mac: "00:00:00:00:ac:02"      # my_interface mac address!
+      server_mac: "00:00:00:00:0a:01"  # AR server interface mac address!
+      ip: '120.120.120.1'              # AR Servers Destination IP
+    CG:
+      name: 'CG'
+      my_interface: "eth2"             # ethx connected to CG server
+      my_mac: "00:00:00:00:ac:03"      # my_interface mac address!
+      server_mac: "00:00:00:00:0b:01"  # CG server interface mac address!
+      ip: '130.130.130.1'
+    Other:
+      name: 'Other'
+      my_interface: "eth3"             # ethx connected to CG server
+      my_mac: "00:00:00:00:ac:04"      # my_interface mac address!
+      server_mac: "00:00:00:00:0c:01"  # Other server interface mac address!
+      ip: '140.140.140.1'
+
+  model:
+    selection: 'dt'                    # selection can be 'dt' or 'rf'
+    dt:
+      path: '/home/cls/basicmodel/dt.joblib'  #  'dt_model.joblib'
+    rf:
+      path: 'rf_model.joblib'
+
+
+  lookup_table:
+    reset_time: 10000                # reset the lookup table ==> higher value less classification but higher speed for forwarding  [it also load the model again!]
+    reset_entry_num: 10             # reset the  lookup table ==> the limitation of entries in the lookup table!
+
+  ot:                               # Online trainer (OT) Server information for receiver module on CLS server
+    ip: '0.0.0.0'                   # Receiver 
+    port: 5001                      # Listen to this port [OT server sends the ML model file to this port!]
+    ml_file: '/home/cls/models'  # The locaaion which the received file replaced!
+    ot_ip: '192.168.140.3'          # The OT Server IP (Change by OT IP Change)
+
+
+
+
+
+
+
+

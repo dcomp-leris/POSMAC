@@ -1,0 +1,34 @@
+appserver_config:
+ 
+
+  listener_interface: eth1     # Interface which is connected to the cls server
+
+  app:
+    name: 'AR'
+
+  app_servers:                  # The IP, Port of the ar server to limit send the correct received packets to OT server
+    - src_ip: "200.18.102.39"
+      dst_ip: "200.18.102.102"
+      port: 5000
+    - src_ip: "200.18.102.102"
+      dst_ip: "200.18.102.39"
+      port: 5000
+    - src_ip: "200.18.102.102"
+      dst_ip: "142.250.218.170"
+      port: 
+    - src_ip: "120.120.120.1"
+      dst_ip: "120.120.120.1"
+      port: 5000
+
+
+  ot_server:
+    interface_name: eth2
+    src_mac: "00:00:00:00:0a:02"
+    dst_mac: "00:00:00:00:cc:01"
+    ip: "192.168.110.3"
+    port: 12345
+
+
+  reset:
+    flw_reset_time: 1000   ## It is in second
+    

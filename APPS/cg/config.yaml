@@ -1,0 +1,76 @@
+appserver_config:
+ 
+
+  listener_interface: eth1     # Interface which is connected to the cls server
+
+  app:
+    name: 'CG'
+
+
+  app_servers:                  # The IP, Port of the ar server to limit send the correct received packets to OT server
+    - src_ip: "13.104.105.102"
+      dst_ip: "200.18.102.12"
+      port: 60503
+    - src_ip: "200.18.102.12"
+      dst_ip: "13.104.105.102"
+      port: 1064
+
+    - src_ip: "104.18.37.228"
+      dst_ip: "200.18.102.102"
+      port: 54237
+    - src_ip: "200.18.102.102"
+      dst_ip: "104.18.37.228"
+      port: 443
+    - src_ip: "200.18.102.102"
+      dst_ip: "172.217.162.99"
+      port: 443
+    - src_ip: "172.217.162.99"
+      dst_ip: "200.18.102.102"
+      port: 443
+
+    - src_ip: "142.251.132.46"
+      dst_ip: "200.18.102.102"
+      port: 63387
+    - src_ip: "200.18.102.102"
+      dst_ip: "142.251.132.46"
+      port: 443
+
+
+    - src_ip: "200.100.200.100"
+      dst_ip: "200.18.102.12"
+      port: 60503
+    - src_ip: "200.100.200.100"
+      dst_ip: "13.104.105.102"
+      port: 1064
+
+
+    - src_ip: "200.100.100.100"
+      dst_ip: "200.18.102.12"
+      port: 60503
+    - src_ip: "200.100.100.100"
+      dst_ip: "13.104.105.102"
+      port: 1064
+
+
+    - src_ip: "130.130.130.1"
+      dst_ip: "130.130.130.1"
+      port: 1064
+
+
+
+
+
+
+  ot_server:
+    interface_name: eth2
+    src_mac: "00:00:00:00:0b:02"
+    dst_mac: "00:00:00:00:cc:02"
+    ip: "192.168.120.2"
+    port: 12346
+
+    
+
+
+  reset:
+    flw_reset_time: 1000   ## It is in second
+    

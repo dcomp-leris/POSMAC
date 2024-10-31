@@ -1,0 +1,18 @@
+# Traffic Replay Configuration
+traffic_config:
+  interface: "eth0"           # Network interface to be used for traffic replay
+  mac_addresses:
+    srcMAC: "00:00:00:00:00:01"  # Source MAC address
+    dstMAC: "00:00:00:00:ac:01"  # Destination MAC address "00:00:00:00:ac:01"
+
+  ip_addresses:
+    AR_IP: "120.120.120.1"      # IP address for Augmented Reality traffic server
+    CG_IP: "130.130.130.1"      # IP address for Cloud Gaming traffic server
+    Other_IP: "140.140.140.1"   # IP address for other types of traffic server
+
+  replay:
+    pcapspeed: True
+    speed: 100Mbps           # Bitrate for the traffic replay
+    pps: 1000                # Packets per Second 
+    duration: 1000           # Second
+

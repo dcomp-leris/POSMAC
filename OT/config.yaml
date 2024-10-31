@@ -1,0 +1,50 @@
+# Online Trainer Server 
+ot_config:
+
+  cls:
+    interface: "eth4"
+    ip: '192.168.140.2'           # Network interface to be used for traffic replay
+    port: '12348'
+    src_mac: '00:00:00:00:cc:04'
+    dst_mac: '00:00:00:00:ac:05'
+    send:
+      port: 5001
+
+  AR:
+    interface: "eth1"
+    ip: '192.168.110.2'           # Network interface to be used for traffic replay
+    port: '12345'
+    src_mac: '00:00:00:00:cc:01'
+    dst_mac: '00:00:00:00:0a:02'
+
+  CG:
+    interface: "eth2"
+    ip: '192.168.120.2'           # Network interface to be used for traffic replay
+    port: '12346'
+    src_mac: '00:00:00:00:cc:02'
+    dst_mac: '00:00:00:00:0b:02'
+
+
+  Other:
+    interface: "eth3"
+    ip: '192.168.130.2'           # Network interface to be used for traffic replay
+    port: '12346'
+    src_mac: '00:00:00:00:cc:03'
+    dst_mac: '00:00:00:00:0c:02'
+
+  db:
+    name: 'traffic.db'
+
+  listening:
+    ip: '0.0.0.0'
+    ports: [12345,12346,12347,12348]
+    app_ports: [12345,12346,12347] 
+
+  model:
+    selection: 'dt'                    # selection can be 'dt' or 'rf'
+    dt: 'dt_model.joblib'
+    rf: 'rf_model.joblib'
+    interval: 120                     # seconds  for training 
+    threshold: 1                      # Number of approved flow in DB
+
+
