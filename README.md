@@ -16,8 +16,10 @@
   </tr>
 </table>
 
+[![Demo](https://img.shields.io/badge/Conference-Presentation-blue)](https://nfvsdn2024.ieee-nfvsdn.org/program/demos)
+[![Paper](https://img.shields.io/badge/Paper-Download-red)](https://arxiv.org/pdf/2502.00671)
+[![Video](https://img.shields.io/badge/Video-Youtube-green)](https://www.youtube.com/watch?v=mXoo5JufeS0)
 
-⚠️**This repository is in a state of development**
 
 ## 1- Introduction
 
@@ -230,4 +232,4 @@ Follow the order in running the components: (1) cls, (2) servers (ar, cg, other)
 
  
  ### 6- Monitoring
-Coming Soon!!!
+POSMA is running! 
