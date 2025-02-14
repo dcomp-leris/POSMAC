@@ -235,9 +235,9 @@ POSMAC is running!
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  
-Please cite:
+**Please cite:**
 
-@misc{shirmarz2025posmacpoweringinnetworkarcg,
+    @misc{shirmarz2025posmacpoweringinnetworkarcg,
       title={POSMAC: Powering Up In-Network AR/CG Traffic Classification with Online Learning}, 
       author={Alireza Shirmarz and Fabio Luciano Verdi and Suneet Kumar Singh and Christian Esteve Rothenberg},
       year={2025},
@@ -245,4 +245,4 @@ Please cite:
       archivePrefix={arXiv},
       primaryClass={cs.NI},
       url={https://arxiv.org/abs/2502.00671}, 
-}
+    }
