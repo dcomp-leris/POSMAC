@@ -1,14 +1,13 @@
 # POSMAC: Powering Up In-Network AR/CG Traffic Classification with Online Learning
 
 
-
 <table align="center">
   <tr>
     <td style="padding-right: 2000px;">
-      <img src="https://github.com/dcomp-leris/VR-AR-CG-network-telemetry/assets/58492556/67a96a00-c791-46b3-afac-daf3ae212aeb" align="middle" alt="Leris" width="150" height="150">
+      <img src="https://github.com/dcomp-leris/VR-AR-CG-network-telemetry/assets/58492556/67a96a00-c791-46b3-afac-daf3ae212aeb" alt="Leris logo" align="left" style="width: 80%; height: 80%;" />
     </td>
-    <td style="padding-right: 2000px;">
-      <img src="https://github.com/user-attachments/assets/8f9e55aa-cfe0-4c3d-9563-aee0601fb73d" alt="Conference" align="middle" width="350" height="150">
+    <td style="padding-middle: 2000px;">
+      <img src="https://github.com/user-attachments/assets/8f9e55aa-cfe0-4c3d-9563-aee0601fb73d" alt="NFVSDN Conference" align="middle" style="width: 80%; height: 80%;">
     </td>
     <td>
       <img src="https://github.com/dcomp-leris/VR-AR-CG-network-telemetry/assets/58492556/b26a6be8-6b16-4542-bb3e-7eeac34644d6" align="middle" alt="SMARTNESS" width="150" height="150">
@@ -16,7 +15,7 @@
   </tr>
 </table>
 
-[![Demo](https://img.shields.io/badge/Conference-Presentation-blue)](https://nfvsdn2024.ieee-nfvsdn.org/program/demos)
+[![Demo](https://img.shields.io/badge/Conference-NFVSDN2024-blue)](https://nfvsdn2024.ieee-nfvsdn.org/program/demos)
 [![Paper](https://img.shields.io/badge/Paper-Download-red)](https://arxiv.org/pdf/2502.00671)
 [![Video](https://img.shields.io/badge/Video-Youtube-green)](https://www.youtube.com/watch?v=mXoo5JufeS0)
 
@@ -230,6 +229,20 @@ Follow the order in running the components: (1) cls, (2) servers (ar, cg, other)
 
 ![POSMAC Files](https://github.com/user-attachments/assets/55781d87-3b35-4cd8-9299-ca5bb079c876)
 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+POSMAC is running!
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  
- ### 6- Monitoring
-POSMA is running! 
+Please cite:
+
+@misc{shirmarz2025posmacpoweringinnetworkarcg,
+      title={POSMAC: Powering Up In-Network AR/CG Traffic Classification with Online Learning}, 
+      author={Alireza Shirmarz and Fabio Luciano Verdi and Suneet Kumar Singh and Christian Esteve Rothenberg},
+      year={2025},
+      eprint={2502.00671},
+      archivePrefix={arXiv},
+      primaryClass={cs.NI},
+      url={https://arxiv.org/abs/2502.00671}, 
+}
